@@ -9,6 +9,10 @@ interface Potpis {
     public function potpis();
 }
 
+interface Sortiranje{
+    public function sortiraj($stavka);
+}
+
 class Osoba {
     protected $id;
     protected $ime;
@@ -34,7 +38,7 @@ class Osoba {
     }
 }
 
-class Student extends Osoba {
+class Student extends Osoba implements Sortiranje {
     private $tip;
 
     public function __construct($ime, $prezime, VrstaStudenta $tip) {
@@ -44,6 +48,10 @@ class Student extends Osoba {
 
     public function gettip() {
         return $this->tip;
+    }
+
+    public function sortiraj($stavka){
+        return $stavka;
     }
 }
 
