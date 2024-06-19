@@ -207,9 +207,17 @@ var_dump($pojavnost);
 $dokument = new Dokument('Teza', 'ovo je teza...');
 
 // lista nepotpisanih stavaka i poziv dekanu da ih potpiše
-// prikaz stavaka nakon potpisa
+
 $dekan->setStavkeZaPotpis($kolegij);
 $dekan->setStavkeZaPotpis($dokument);
+foreach ($dekan->getStavkeZaPotpis() as $stavka) {
+    echo "\n{$stavka}";
+    $stavka->potpis();
+}
+
+echo "\n";
+
+// prikaz stavaka nakon potpisa
 foreach ($dekan->getStavkeZaPotpis() as $stavka) {
     echo "\n{$stavka}";
 }
