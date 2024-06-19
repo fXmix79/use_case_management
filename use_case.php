@@ -38,7 +38,7 @@ class Osoba {
     }
 }
 
-class Student extends Osoba implements Sortiranje {
+class Student extends Osoba {
     private $tip;
 
     public function __construct($ime, $prezime, VrstaStudenta $tip) {
@@ -50,9 +50,6 @@ class Student extends Osoba implements Sortiranje {
         return $this->tip;
     }
 
-    public function sortiraj($stavka){
-        return $stavka;
-    }
 }
 
 class Profesor extends Osoba {
@@ -81,8 +78,9 @@ class Asistent extends Osoba {
     }
 }
 
-class Dekan extends Osoba {
+class Dekan extends Osoba implements Sortiranje {
     private $titula;
+    private $stavke = [];
 
     public function __construct($ime, $prezime, $titula) {
         parent::__construct($ime, $prezime);
@@ -92,6 +90,11 @@ class Dekan extends Osoba {
 
     public function potpisStavka(Potpis $stavka) {
         $stavka->potpis();
+    }
+
+    
+    public function sortiraj($stavka){
+        return $stavka;
     }
 }
 
