@@ -9,9 +9,6 @@ interface Potpis {
     public function potpis();
 }
 
-interface Sortiranje{
-    public function sortiraj($stavka);
-}
 
 class Osoba {
     protected $id;
@@ -78,9 +75,9 @@ class Asistent extends Osoba {
     }
 }
 
-class Dekan extends Osoba implements Sortiranje {
+class Dekan extends Osoba {
     private $titula;
-    private $stavke = [];
+    private $stavkeZaPotpis = [];
 
     public function __construct($ime, $prezime, $titula) {
         parent::__construct($ime, $prezime);
@@ -92,9 +89,12 @@ class Dekan extends Osoba implements Sortiranje {
         $stavka->potpis();
     }
 
-    
-    public function sortiraj($stavka){
-        return $stavka;
+    public function setStavkeZaPotpis($stavka){
+        $this->stavkeZaPotpis[] = $stavka; 
+    }
+
+    public function getStavkeZaPotpis():array{
+        return $this->stavkeZaPotpis;
     }
 }
 
@@ -154,14 +154,14 @@ foreach ($studenti as $student) {
 
 // sortiraj po id - default
 usort($studenti, fn($a, $b) => $a->getId() <=> $b->getId());
-echo "\nSorted by ID:\n";
+echo "\nSortirano po ID:\n";
 foreach ($studenti as $student) {
     echo "ID: {$student->getId()}, naziv: {$student->getime()} {$student->getprezime()}, tip: {$student->gettip()->value}\n";
 }
 
 // sortiraj po prezimenu
 usort($studenti, fn($a, $b) => $a->getprezime() <=> $b->getprezime());
-echo "\nSorted by Last naziv:\n";
+echo "\nSortirano po prezimenu:\n";
 foreach ($studenti as $student) {
     echo "ID: {$student->getId()}, naziv: {$student->getime()} {$student->getprezime()}, tip: {$student->gettip()->value}\n";
 }
@@ -208,9 +208,9 @@ $dokument = new Dokument('Teza', 'ovo je teza...');
 
 // lista nepotpisanih stavaka i poziv dekanu da ih potpiše
 // prikaz stavaka nakon potpisa
-$nepotpisaniDokumenti = [$kolegij, $dokument];
-foreach ($nepotpisaniDokumenti as $stavka) {
-    $dekan->potpisStavka($stavka);
+$dekan->setStavkeZaPotpis($kolegij);
+$dekan->setStavkeZaPotpis($dokument);
+foreach ($dekan->getStavkeZaPotpis() as $stavka) {
     echo "\n{$stavka}";
 }
 
