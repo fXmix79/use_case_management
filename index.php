@@ -15,7 +15,7 @@ use App\Classes\Kolegij;
 $studenti = [
     new Student('Ivan', 'Ivić', VrstaStudenta::Redovni),
     new Student('Jana', 'Janić', VrstaStudenta::Vanredni),
-    new Student('Emilija', 'Kokić', VrstaStudenta::Redovni)
+    new Student('Emilija', 'Anić', VrstaStudenta::Redovni)
 ];
 
 // prikaži studente
@@ -39,7 +39,7 @@ foreach ($studenti as $student) {
 
 // stvori kolegij
 $kolegij = new kolegij(123, 'OOP', 20);
-echo "\nkolegij: {$kolegij}\n";
+echo "\nKolegij: {$kolegij}\n";
 
 // stvori profesora i asistenta
 $profesor = new Profesor('Dr.', 'Mikula', 'OOP');
@@ -70,8 +70,9 @@ foreach ($sveOsobe as $osoba) {
         $pojavnost['Dekan']++;
     }
 }  
-
-var_dump($pojavnost);
+foreach($pojavnost as $key => $value){
+    echo "$key: $value\n";
+}
 
 
 // stvori nepotpisani dokument

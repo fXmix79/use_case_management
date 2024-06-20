@@ -21,7 +21,7 @@ class Kolegij implements Potpis {
     }
 
     public function __toString() {
-        return "Sifra: {$this->kod}, Naziv: {$this->naziv}, Bodovi: {$this->ects}ects, Potvrđen: " . ($this->ovjereno ? 'da' : 'ne');
+        return "Šifra: {$this->kod}, Naziv: {$this->naziv}, Bodovi: {$this->ects}ects, Potvrđen: " . ($this->ovjereno ? 'da' : 'ne');
     }
 
 }
