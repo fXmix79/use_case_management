@@ -51,26 +51,8 @@ echo "Asistent: {$asistent->getime()} {$asistent->getprezime()}, kolegij: {$asis
 $dekan = new Dekan('Dr.', 'Heisenberg', 'Dekan Fakulteta');
 echo "\nDekan: {$dekan->getime()} {$dekan->getprezime()}, titula: Dekan Fakulteta\n\n";
 
-// napravi popis broja svih zasebnih instanca tipa objekta
-$sveOsobe = array_merge($studenti, [$profesor, $asistent, $dekan]);
-$pojavnost = [
-    'Student' => 0,
-    'Profesor' => 0,
-    'Asistent' => 0,
-    'Dekan' => 0
-];
-foreach ($sveOsobe as $osoba) {
-    if ($osoba instanceof Student) {
-        $pojavnost['Student']++;
-    } elseif ($osoba instanceof Profesor) {
-        $pojavnost['Profesor']++;
-    } elseif ($osoba instanceof Asistent) {
-        $pojavnost['Asistent']++;
-    } elseif ($osoba instanceof Dekan) {    
-        $pojavnost['Dekan']++;
-    }
-}  
-foreach($pojavnost as $key => $value){
+// napravi popis broja zasebnih instanca tipa objekata 
+foreach(Osoba::getInstanceKlasa() as $key => $value){
     echo "$key: $value\n";
 }
 
